@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#136a48" />
+  <title>رحلتي مع وطني | نشاط تفاعلي للصف الرابع</title>
+  <style>
+    :root {--green:#146747; --dark:#133f34; --pale:#eff9f3; --leaf:#daf1e1; --cream:#fffef9; --line:#dce9e0; --yellow:#ffda82; --red:#9c3654; --muted:#567168;}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at 5% 8%,#dbf1e4,transparent 31%),linear-gradient(140deg,#f3f9ef,#f9f8f2 65%,#e9f5ee);font-family:Tahoma,"Segoe UI",Arial,sans-serif;color:var(--dark);min-height:100vh}
+    .container{max-width:990px;padding:26px 20px 42px;margin:auto}
+    header{background:linear-gradient(122deg,#116b47,#18543e);border-radius:26px;padding:27px 32px;color:white;position:relative;overflow:hidden;box-shadow:0 12px 26px #16543a1c}
+    header:after{content:"✦";position:absolute;left:20px;top:-55px;font-size:210px;color:#ffffff13;pointer-events:none}
+    .eyebrow{display:inline-block;background:#ffffff27;border:1px solid #ffffff43;padding:6px 14px;border-radius:50px;font-size:13px;font-weight:700}
+    header h1{font-size:clamp(27px,5vw,43px);line-height:1.5;margin:12px 0 4px} header p{margin:6px 0 0;font-size:16px;line-height:1.9;color:#e6fff0;max-width:620px}
+    .topline{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:15px}
+    .smallprint{font-size:13px;color:#e4faeb}
+    .fullscreen{background:white;border:0;color:var(--green);font-weight:bold;border-radius:13px;padding:11px 15px;cursor:pointer;font-size:13px}
+    .stats{display:flex;gap:11px;margin:17px 0 14px;flex-wrap:wrap}
+    .stat{background:white;border:1px solid var(--line);border-radius:15px;padding:12px 18px;box-shadow:0 3px 10px #133c2708;font-size:14px;flex:1;min-width:148px}
+    .stat strong{font-size:19px;color:var(--green)}
+    .days{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:19px 0}
+    .day{border:2px solid #d4e5d9;background:white;border-radius:18px;min-height:96px;padding:11px 6px;cursor:pointer;color:#234c3c;transition:transform .14s,background .14s,border-color .14s;text-align:center;font-family:inherit}
+    .day:hover{transform:translateY(-2px);border-color:#85b59a}.day[aria-selected="true"]{background:var(--green);color:white;border-color:var(--green);box-shadow:0 7px 14px #116b4733}
+    .day-emoji{display:block;font-size:26px;margin-bottom:4px}.day-label{display:block;font-size:13px;font-weight:700}.day-title{display:block;font-size:11px;opacity:.85;margin-top:3px;line-height:1.7}
+    main{background:white;border:1px solid var(--line);border-radius:26px;padding:24px 28px;box-shadow:0 7px 28px #1c3c2710;min-height:415px}
+    .chapter-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:13px}
+    .chapter-head h2{margin:0 0 7px;font-size:25px;color:var(--green)} .chapter-head p{margin:0;color:var(--muted);font-size:15px;line-height:1.8}
+    .pill{background:#eff8ef;color:#176546;border:1px solid #d4e9d8;padding:9px 14px;border-radius:30px;font-size:13px;font-weight:700}
+    .progress-track{background:#e7eee8;border-radius:20px;overflow:hidden;height:10px;margin:22px 0 17px}
+    .progress-bar{height:100%;background:linear-gradient(90deg,#65b986,#167751);width:0%;border-radius:20px;transition:width .25s}
+    .prompt-num{font-size:13px;color:var(--muted);font-weight:700;margin:12px 0}
+    .question{font-size:clamp(22px,3.4vw,29px);margin:7px 0 18px;line-height:1.7}
+    .answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .answer{min-height:74px;padding:15px;text-align:right;border:2px solid #dbe9df;border-radius:17px;background:#fbfdf9;color:#214c3b;font-family:inherit;font-size:17px;cursor:pointer;font-weight:700;line-height:1.6;transition:background .13s,border-color .13s,transform .13s}
+    .answer:hover:not(:disabled),.answer:focus-visible{border-color:#70aa8b;background:#f0f8f0;outline:0;transform:translateY(-1px)}
+    .answer:disabled{cursor:default}.answer.correct{background:#e2f7e8;border-color:#1b9959;color:#0d5932}.answer.wrong{background:#fff1f1;border-color:#d17982;color:#913c48}
+    .feedback{margin-top:16px;padding:13px 15px;border-radius:15px;font-size:16px;line-height:1.8;font-weight:700;background:#e9f7ed;color:#16553c}
+    .feedback.try{background:#fff1ee;color:#894250}
+    .action-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:11px;margin-top:19px}
+    .primary,.secondary{border:0;border-radius:14px;min-height:46px;font-family:inherit;font-weight:700;padding:10px 19px;font-size:15px;cursor:pointer}
+    .primary{background:var(--green);color:white}.primary:hover{background:#0c5036}.primary:disabled{opacity:.38;cursor:not-allowed}
+    .secondary{background:#edf3ec;color:#23533e}.secondary:hover{background:#dcebdc}
+    .hint{font-size:13px;color:var(--muted);line-height:1.8}
+    .finish{text-align:center;padding:10px 0 0}.finish-emoji{font-size:57px;line-height:1.2}.finish h2{font-size:31px;margin:6px 0 7px}.finish p{color:#4b6b5f;font-size:17px;line-height:1.9;margin:7px auto;max-width:600px}
+    .score{display:inline-block;border-radius:20px;background:#ecf8ed;color:#17613f;padding:13px 23px;margin:15px 0;font-weight:800;font-size:20px}
+    .reflection{background:#f6faf5;border:1px dashed #a5c7ac;padding:18px;border-radius:16px;text-align:right;margin-top:22px}
+    .reflection label{font-size:16px;font-weight:700;display:block;margin-bottom:8px}.reflection textarea{width:100%;min-height:85px;resize:vertical;border:1px solid #bfd5c2;border-radius:12px;padding:13px;font-family:inherit;font-size:16px;outline-color:#388c64}
+    .quote{font-weight:700;font-size:17px;margin-top:15px;line-height:2;color:#11613e;overflow-wrap:anywhere}.quote[hidden]{display:none}
+    .credits{font-size:12px;text-align:center;color:#587269;margin:16px 0;line-height:2}
+    @media(max-width:620px){.container{padding:12px 10px 25px}header{padding:19px;border-radius:20px}.days{gap:6px}.day{min-height:87px;padding:7px 2px;border-radius:12px}.day-emoji{font-size:22px}.day-label{font-size:11px}.day-title{font-size:9px}main{padding:18px 14px}.answers{grid-template-columns:1fr}.stat{padding:10px 12px}.chapter-head h2{font-size:23px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+ <div class="container">
+  <header>
+   <span class="eyebrow">🇸🇦 نشاط وطني إلكتروني • الصف الرابع الابتدائي</span>
+   <h1>رحلتي مع وطني 💚</h1>
+   <p>خمسة أيام من المتعة والاكتشاف! اختاري اليوم، وأجيبي عن سؤالين، وشاركي إجاباتك مع معلمتك وزميلاتك.</p>
+   <div class="topline"><span class="smallprint">⏱️ 3–5 دقائق لكل يوم • لا يتطلب حسابًا أو اتصالًا بالإنترنت</span><button type="button" id="fullscreen" class="fullscreen">⛶ عرض الشاشة كاملة</button></div>
+  </header>
+  <div class="stats" aria-label="ملخص المشاركة">
+    <div class="stat">📚 الأيام: <strong id="daysDone">0</strong> / 5 مكتملة</div>
+    <div class="stat">⭐ الإجابات الصحيحة: <strong id="totalCorrect">0</strong> / 10</div>
+  </div>
+  <nav class="days" id="dayNav" aria-label="اختيار اليوم الدراسي"></nav>
+  <main id="activity" aria-live="polite"></main>
+  <footer class="credits">للعرض داخل الحصة أو لإرسال الملف للطالبات • لا يجمع أسماء الطالبات أو إجاباتهن عبر الإنترنت • أعيدي تحميل الصفحة للبدء من جديد</footer>
+ </div>
+ <script>
+  'use strict';
+  const lessons = [
+    {day:'الأحد',name:'رموز وطني',icon:'🇸🇦',intro:'نستكشف علم المملكة وشعارها الجميل.',questions:[
+      {q:'ما اللون الأساسي للعلم السعودي؟',choices:['الأخضر','الأزرق','الأحمر'],answer:0,note:'العلم السعودي أخضر اللون.'},
+      {q:'ماذا يظهر على علم المملكة العربية السعودية؟',choices:['نجمة بيضاء','الشهادتان وسيف أبيض','نخلة فقط'],answer:1,note:'يحمل العلم شهادة التوحيد والسيف.'}
+    ]},
+    {day:'الاثنين',name:'أعرف بلادي',icon:'🏙️',intro:'نتعرف على معلومات مهمة عن المملكة.',questions:[
+      {q:'ما عاصمة المملكة العربية السعودية؟',choices:['جدة','الرياض','أبها'],answer:1,note:'الرياض هي عاصمة المملكة العربية السعودية.'},
+      {q:'متى نحتفل باليوم الوطني السعودي؟',choices:['23 سبتمبر','22 فبراير','1 يناير'],answer:0,note:'اليوم الوطني السعودي يوافق 23 سبتمبر من كل عام.'}
+    ]},
+    {day:'الثلاثاء',name:'تراث بلادي',icon:'🏛️',intro:'نكتشف بعض كنوز تراثنا السعودي.',questions:[
+      {q:'في أي مدينة تاريخية يقع حي الطريف؟',choices:['الدرعية','الدمام','الطائف'],answer:0,note:'يقع حي الطريف التاريخي في الدرعية.'},
+      {q:'أيّ مما يأتي يُعد جزءًا من ثقافتنا وتراثنا؟',choices:['القهوة السعودية','الكتابة على الجدران','رمي النفايات'],answer:0,note:'تُعد القهوة السعودية إحدى رموز الضيافة والثقافة المحلية.'}
+    ]},
+    {day:'الأربعاء',name:'أخدم وطني',icon:'🌱',intro:'نتعلم كيف نترجم حب الوطن إلى سلوك جميل.',questions:[
+      {q:'كيف أحافظ على حديقة الحي؟',choices:['أترك المخلفات','أضع النفايات في السلة','أتلف الأشجار'],answer:1,note:'الحفاظ على النظافة مسؤولية نتشارك فيها جميعًا.'},
+      {q:'ما التصرف الذي يدل على التعاون؟',choices:['أساعد زميلتي عند الحاجة','أسخر من الآخرين','أمنع زميلتي من المشاركة'],answer:0,note:'التعاون والاحترام من سلوكيات المواطنة الإيجابية.'}
+    ]},
+    {day:'الخميس',name:'تحدي البطلات',icon:'🏆',intro:'تحدٍ ختامي، ثم جملة جميلة من تأليفك.',questions:[
+      {q:'ما السلوك الذي يساعد على الحفاظ على موارد الوطن؟',choices:['الإسراف في الماء','ترك الأضواء دائمًا','ترشيد استهلاك الماء'],answer:2,note:'ترشيد استهلاك الماء يحافظ على موارد وطننا.'},
+      {q:'كيف أعبّر عن حبي لوطني؟',choices:['أهمل واجباتي','أتعلم وأتعاون وأحافظ على الممتلكات','أسيء للمرافق العامة'],answer:1,note:'نُظهر حب الوطن بأفعال جميلة ومسؤولية يومية.'}
+    ]}
+  ];
+  const progress = lessons.map(() => ({index:0, correct:0, done:false, picked:null, revealed:false}));
+  let current=0;
+  const nav=document.getElementById('dayNav');
+  const panel=document.getElementById('activity');
+  function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function renderNav(){
+    nav.innerHTML=lessons.map((l,i)=>`<button type="button" class="day" data-day="${i}" aria-selected="${i===current?'true':'false'}" aria-label="${l.day}: ${l.name}"><span class="day-emoji">${progress[i].done?'✅':l.icon}</span><span class="day-label">${l.day}</span><span class="day-title">${l.name}</span></button>`).join('');
+    nav.querySelectorAll('[data-day]').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.day);render();}));
+    document.getElementById('daysDone').textContent=progress.filter(p=>p.done).length;
+    document.getElementById('totalCorrect').textContent=progress.reduce((a,p)=>a+p.correct,0);
+  }
+  function render(){
+    renderNav();let l=lessons[current],p=progress[current];
+    if(p.done){
+      panel.innerHTML=`<div class="finish"><div class="finish-emoji">🎉</div><h2>أحسنتِ يا بطلة الوطن!</h2><p>أنهيتِ أسئلة يوم ${l.day}: «${l.name}».</p><div class="score">⭐ نتيجتك: ${p.correct} من 2</div><p>كل يوم نتعلم فيه شيئًا جديدًا عن وطننا هو إنجاز جميل 💚</p>${current===4?`<div class="reflection"><label for="reflectionText">✍️ أكملي الجملة: أنا أحب وطني وأخدمه عندما...</label><textarea id="reflectionText" maxlength="160" placeholder="مثال: أحافظ على مدرستي وأساعد زميلاتي"></textarea><div class="action-row"><button class="primary" id="showQuote">✨ اعرضي عبارتي</button><span class="hint">يمكنكِ قراءتها أمام المعلمة أو مشاركتها في المحادثة.</span></div><div class="quote" id="quote" hidden></div></div>`:''}<div class="action-row"><button class="secondary" id="restart">↻ إعادة أسئلة اليوم</button><button class="primary" id="nextDay">${current<4?'اليوم التالي ←':'العودة إلى الأحد'}</button></div></div>`;
+      panel.querySelector('#restart').addEventListener('click',()=>{progress[current]={index:0,correct:0,done:false,picked:null,revealed:false};render();});
+      panel.querySelector('#nextDay').addEventListener('click',()=>{current=(current+1)%5;render();});
+      if(current===4){panel.querySelector('#showQuote').addEventListener('click',()=>{const val=panel.querySelector('#reflectionText').value.trim();const out=panel.querySelector('#quote');out.textContent=val?'💚 أنا أحب وطني وأخدمه عندما '+val:'اكتبي عبارتكِ الجميلة أولًا 💚';out.hidden=false;});}
+      return;
+    }
+    const q=l.questions[p.index];
+    const choices=q.choices.map((c,i)=>{
+      let cls='answer';if(p.revealed&&i===q.answer)cls+=' correct';else if(p.revealed&&i===p.picked)cls+=' wrong';
+      return `<button type="button" class="${cls}" data-pick="${i}" ${p.revealed?'disabled':''}>${['أ','ب','ج'][i]}. ${esc(c)} ${p.revealed&&i===q.answer?'✓':''}</button>`;
+    }).join('');
+    let feedback='';
+    if(p.revealed){let right=p.picked===q.answer; feedback=`<div class="feedback ${right?'':'try'}" role="status">${right?'🌟 ممتاز! إجابة صحيحة.':'💡 محاولة جميلة! لنتعلم الإجابة الصحيحة.'} ${esc(q.note)}</div>`;}
+    panel.innerHTML=`<div class="chapter-head"><div><h2>${l.icon} ${l.name}</h2><p>${l.intro}</p></div><span class="pill">${l.day} • سؤالان</span></div><div class="progress-track" aria-label="تقدم النشاط"><div class="progress-bar" style="width:${(p.index+(p.revealed?1:0))/2*100}%"></div></div><div class="prompt-num">السؤال ${p.index+1} من 2</div><h3 class="question">${esc(q.q)}</h3><div class="answers">${choices}</div>${feedback}<div class="action-row">${p.revealed?`<button class="primary" id="next">${p.index===1?'🌟 شاهدي نتيجتك':'السؤال التالي ←'}</button>`:'<span class="hint">👆 اضغطي على إجابة واحدة لتعرفي النتيجة فورًا.</span>'}<button class="secondary" id="reset">↻ إعادة اليوم</button></div>`;
+    panel.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{
+      if(p.revealed)return;
+      p.picked=Number(b.dataset.pick);p.revealed=true;
+      if(p.picked===q.answer)p.correct++;render();
+    }));
+    if(p.revealed){panel.querySelector('#next').addEventListener('click',()=>{if(p.index===1){p.done=true;}else{p.index++;p.picked=null;p.revealed=false;}render();});}
+    panel.querySelector('#reset').addEventListener('click',()=>{progress[current]={index:0,correct:0,done:false,picked:null,revealed:false};render();});
+  }
+  document.getElementById('fullscreen').addEventListener('click',()=>{if(!document.fullscreenElement&&document.documentElement.requestFullscreen){document.documentElement.requestFullscreen().catch(()=>{});}else if(document.exitFullscreen){document.exitFullscreen().catch(()=>{});}});
+  render();
+ </script>
+</body>
+</html>
